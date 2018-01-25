@@ -60,6 +60,10 @@ public class HelloWorldController {
         return userPage;
     }
 
+    /**
+     * jpa默认查询
+     * @return
+     */
     @RequestMapping("/getAllUser")
     public List<User> getAllUser() {
 
@@ -67,6 +71,10 @@ public class HelloWorldController {
         return userList;
     }
 
+    /**
+     * 自定义简单查询
+     * @return
+     */
     @RequestMapping("/addUser")
         public User addUser() {
         Date date = new Date();
@@ -86,11 +94,16 @@ public class HelloWorldController {
         return userRepository.findByNameOrEmail("aa","cc@126.com");
     }
 
-
-
+    /**
+     * 与mybatis结合
+     * @return
+     */
     @RequestMapping("/mybatis/getAllUser")
     public List<UserEntity> getAllUserBymybatis() {
         List<UserEntity> users = userMapper.getAll();
+        for (UserEntity user : users) {
+            System.out.println(user.toString());
+        }
         return users;
     }
 }
