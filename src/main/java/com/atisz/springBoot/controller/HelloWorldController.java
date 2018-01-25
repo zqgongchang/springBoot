@@ -2,6 +2,8 @@ package com.atisz.springBoot.controller;
 
 import com.atisz.springBoot.domain.User;
 import com.atisz.springBoot.domain.UserRepository;
+import com.atisz.springBoot.entity.UserEntity;
+import com.atisz.springBoot.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +22,9 @@ public class HelloWorldController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @RequestMapping("/hello")
     public String index() {
@@ -63,7 +68,7 @@ public class HelloWorldController {
     }
 
     @RequestMapping("/addUser")
-    public User addUser() {
+        public User addUser() {
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
         String formattedDate = dateFormat.format(date);
@@ -79,5 +84,13 @@ public class HelloWorldController {
         }
 
         return userRepository.findByNameOrEmail("aa","cc@126.com");
+    }
+
+
+
+    @RequestMapping("/mybatis/getAllUser")
+    public List<UserEntity> getAllUserBymybatis() {
+        List<UserEntity> users = userMapper.getAll();
+        return users;
     }
 }
