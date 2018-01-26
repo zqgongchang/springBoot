@@ -4,6 +4,7 @@ import com.atisz.springBoot.domain.User;
 import com.atisz.springBoot.domain.UserRepository;
 import com.atisz.springBoot.entity.UserEntity;
 import com.atisz.springBoot.mapper.UserMapper;
+import com.atisz.springBoot.mapper.UserMapper_xml;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,13 +19,16 @@ import java.util.Iterator;
 import java.util.List;
 
 @RestController
-public class HelloWorldController {
+public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserMapper_xml userMapper_xml;
 
     @RequestMapping("/hello")
     public String index() {
@@ -95,12 +99,25 @@ public class HelloWorldController {
     }
 
     /**
-     * 与mybatis结合
+     * 与mybatis结合-注释方式
      * @return
      */
     @RequestMapping("/mybatis/getAllUser")
     public List<UserEntity> getAllUserBymybatis() {
         List<UserEntity> users = userMapper.getAll();
+        for (UserEntity user : users) {
+            System.out.println(user.toString());
+        }
+        return users;
+    }
+
+    /**
+     * 与mybatis结合-xml方式
+     * @return
+     */
+    @RequestMapping("/mybatis/getAllUser-xml")
+    public List<UserEntity> getAllUserBymybatis_xml() {
+        List<UserEntity> users = userMapper_xml.getAll();
         for (UserEntity user : users) {
             System.out.println(user.toString());
         }
