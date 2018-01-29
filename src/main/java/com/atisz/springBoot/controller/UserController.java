@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.DateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class UserController {
@@ -44,7 +42,7 @@ public class UserController {
     }
 
     /**
-     * 分页查询
+     * jpa默认分页查询
      * @return
      */
     @RequestMapping("/getAllUserByPage")
@@ -123,4 +121,5 @@ public class UserController {
         }
         return users;
     }
+
 }
