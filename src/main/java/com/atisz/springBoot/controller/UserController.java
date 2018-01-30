@@ -3,6 +3,7 @@ package com.atisz.springBoot.controller;
 import com.atisz.springBoot.domain.User;
 import com.atisz.springBoot.domain.UserRepository;
 import com.atisz.springBoot.entity.UserEntity;
+import com.atisz.springBoot.enums.UserSexEnum;
 import com.atisz.springBoot.mapper.UserMapper;
 import com.atisz.springBoot.mapper.UserMapper_xml;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.util.*;
@@ -113,13 +113,47 @@ public class UserController {
      * 与mybatis结合-xml方式
      * @return
      */
-    @RequestMapping("/mybatis/getAllUser-xml")
+    @RequestMapping("/mybatis")
     public List<UserEntity> getAllUserBymybatis_xml() {
         List<UserEntity> users = userMapper_xml.getAll();
         for (UserEntity user : users) {
             System.out.println(user.toString());
         }
         return users;
+    }
+
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     */
+    @PostMapping("/mybatis")
+    public UserEntity insertUser_xml(@RequestBody UserEntity user) {
+        userMapper_xml.insert(user);
+        return user;
+    }
+
+    /**
+     * 根据id删除指定用户
+     * @param id
+     */
+    @DeleteMapping("/mybatis/{id}")
+    public void deleteUser_xml(@PathVariable("id") Long id) {
+        userMapper_xml.delete(id);
+    }
+
+    /**
+     * 根据id获取指定用户信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/mybatis/{id}")
+    public UserEntity getOneUser(@PathVariable("id") Long id) {
+        UserEntity user = userMapper_xml.getOne(id);
+        if (user != null) {
+            return user;
+        }
+        return null;
     }
 
 }

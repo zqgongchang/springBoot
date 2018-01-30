@@ -29,7 +29,7 @@
     <insert id="insert" parameterType="com.atisz.springBoot.entity.UserEntity">
         INSERT INTO
         users
-        (userName,passWord,user_sex)
+        (userName,passWord,userSex)
         VALUES
         (#{userName}, #{passWord}, #{userSex})
     </insert>
