@@ -28,6 +28,10 @@ public class UserController {
     @Autowired
     private UserMapper_xml userMapper_xml;
 
+    /**
+     * hello world
+     * @return
+     */
     @RequestMapping("/hello")
     public String index() {
         return "hello world";
