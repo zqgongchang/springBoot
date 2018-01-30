@@ -1,15 +1,4 @@
 # springBoot
 springboot test!!!
-目录结构：
-src/main
---------/java
--------------/com.atisz.springBoot
-----------------------------------/controller
-----------------------------------/domain
-----------------------------------/entity
-----------------------------------/enums
-----------------------------------/mapper
-----------------------------------/sercice
-----------------------------------Application.class
---------/resources
-src/test
+(1) spring data jpa的默认查询和自定义查询
+(2) springboot和freemarker结合
